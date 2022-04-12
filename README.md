@@ -1,4 +1,4 @@
-## Ventrina Live
+## Vetrina Live
 
 Run dev server:
 
