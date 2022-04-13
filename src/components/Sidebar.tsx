@@ -1,10 +1,10 @@
 import * as React from "react";
 // @mui
-import { styled, Theme, CSSObject } from "@mui/material/styles";
+import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import { styled as MuiStyled } from "@mui/styles";
 import MuiDrawer from "@mui/material/Drawer";
+import { SvgIcon } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -12,8 +12,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NavList from "./NavList";
 // Nav Menu
 import menu from "../routes/menu";
+import { ReactComponent as Logo } from "../assets/logo.svg";
 
-const drawerWidth = 240;
+const drawerWidth = 255;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -31,9 +32,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
   }),
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
+  // [theme.breakpoints.up("sm")]: {
+  //   width: `calc(${theme.spacing(8)} + 1px)`,
+  // },
 });
 
 const DrawerHeader = MuiStyled("div")(({ theme }) => ({
@@ -52,7 +53,14 @@ interface AppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
-  // zIndex: theme.zIndex.drawer + 1,
+  height: 60,
+  boxShadow: "none",
+  justifyContent: "center",
+  padding: theme.spacing(0, 6),
+  marginLeft: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(100% - (calc(${theme.spacing(7)} + 1px)))`,
+  border: `1px solid ${theme.palette.grey["200"]}`,
+  backgroundColor: theme.palette.background.default,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -85,7 +93,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Sidebar() {
-  // const theme = useTheme();
+  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
   const handleDrawerClose = () => {
@@ -95,32 +103,28 @@ export default function Sidebar() {
   return (
     <>
       <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: "none" }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
-        </Toolbar>
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{
+            color: theme.palette.primary.dark,
+          }}
+        >
+          Dashboard
+        </Typography>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ display: open ? "block" : "none" }}
-          >
-            Ventrina Live
-          </Typography>
+          <SvgIcon
+            component={Logo}
+            inheritViewBox
+            sx={{
+              marginLeft: 2,
+              width: 90.4,
+              display: open ? "block" : "none",
+            }}
+          />
           <IconButton onClick={handleDrawerClose}>
             <MenuIcon />
           </IconButton>

@@ -14,6 +14,7 @@ const paths: PathsType = {
   },
   catalogue: {
     title: "Catalogue",
+    path: "",
     children: [
       {
         title: "Item 1",
@@ -39,6 +40,7 @@ const paths: PathsType = {
   },
   marketing: {
     title: "Marketing",
+    path: "",
     children: [
       {
         title: "Discount codes",

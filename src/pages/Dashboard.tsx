@@ -1,8 +1,17 @@
 import React from "react";
+import Typography from "@mui/material/Typography";
 
 const Dashboard = () => {
   return (
     <div>
+      <Typography
+        variant="h3"
+        sx={{
+          mb: 4,
+        }}
+      >
+        Welcome Mario!
+      </Typography>
       <h3>
         Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
         ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum

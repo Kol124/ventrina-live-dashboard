@@ -2,9 +2,9 @@ import * as React from "react";
 // @mui
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 // Component
 import NavListItem from "./NavListItem";
@@ -45,7 +45,14 @@ export default function NavList({
               >
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <Typography
+                sx={{
+                  opacity: open ? 1 : 0,
+                }}
+                variant="subtitle2"
+              >
+                {text}
+              </Typography>
             </ListItemButton>
           )
         )}

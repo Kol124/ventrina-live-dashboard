@@ -3,13 +3,14 @@ import * as React from "react";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 // Interface
 import { MenuType } from "../interfaces";
+//
+import RouterLink from "./RouterLink";
 
 export default function NavListItem({
   open,
@@ -44,34 +45,46 @@ export default function NavListItem({
               justifyContent: "center",
             }}
           >
-            <InboxIcon />
+            {item.icon}
           </ListItemIcon>
-          <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+          <Typography
+            sx={{
+              opacity: open ? 1 : 0,
+            }}
+            variant="subtitle2"
+          >
+            {item.title}
+          </Typography>
           {expand ? (
-            <ExpandLess sx={{ display: open ? "block" : "none" }} />
+            <ExpandLess
+              sx={{ marginLeft: "auto", display: open ? "block" : "none" }}
+            />
           ) : (
-            <ExpandMore sx={{ display: open ? "block" : "none" }} />
+            <ExpandMore
+              sx={{ marginLeft: "auto", display: open ? "block" : "none" }}
+            />
           )}
         </ListItemButton>
-
         <Collapse in={expand} timeout="auto" unmountOnExit>
           {item.children?.map((data) => (
             <List component="div" disablePadding>
-              <ListItemButton
+              <RouterLink
                 sx={{
-                  p: 0,
+                  pl: 0,
                   ml: "auto",
                   width: "73%",
                 }}
+                to={data.path}
               >
-                <ListItemText
-                  primary={data.title}
+                <Typography
                   sx={{
-                    width: "65%",
                     opacity: open ? 1 : 0,
                   }}
-                />
-              </ListItemButton>
+                  variant="subtitle2"
+                >
+                  {data.title}
+                </Typography>
+              </RouterLink>
             </List>
           ))}
         </Collapse>
@@ -80,13 +93,14 @@ export default function NavListItem({
   }
 
   return (
-    <ListItemButton
+    <RouterLink
       key={item.title}
       sx={{
         minHeight: 48,
         justifyContent: open ? "initial" : "center",
         px: 2.5,
       }}
+      to={item.path}
     >
       <ListItemIcon
         sx={{
@@ -97,12 +111,14 @@ export default function NavListItem({
       >
         {item.icon}
       </ListItemIcon>
-      <ListItemText
-        primary={item.title}
-        sx={{ opacity: open ? 1 : 0 }}
-        // component={RouterLink}
-        // to={item.path}
-      />
-    </ListItemButton>
+      <Typography
+        sx={{
+          opacity: open ? 1 : 0,
+        }}
+        variant="subtitle2"
+      >
+        {item.title}
+      </Typography>
+    </RouterLink>
   );
 }

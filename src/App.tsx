@@ -1,12 +1,7 @@
 import Router from "./routes";
-import {
-  Theme,
-  StyledEngineProvider,
-  createTheme,
-  ThemeProvider,
-} from "@mui/material/styles";
-
-const theme = createTheme();
+// theme
+import ThemeProvider from "./theme";
+import { Theme } from "@mui/material/styles";
 
 declare module "@mui/styles/defaultTheme" {
   interface DefaultTheme extends Theme {}
@@ -14,11 +9,9 @@ declare module "@mui/styles/defaultTheme" {
 
 function App() {
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <Router />
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ThemeProvider>
+      <Router />
+    </ThemeProvider>
   );
 }
 
