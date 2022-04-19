@@ -1,30 +1,65 @@
-import React from "react";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+// components
+import Hero from "../components/Hero";
+import {
+  Orders,
+  Visitors,
+  Extensions,
+  LatestNews,
+  CustomerSupport,
+  SellYourProducts,
+  ConfigureShop,
+  TrustPilot,
+  Invite,
+} from "../components/dashboard";
 
 const Dashboard = () => {
   return (
-    <div>
-      <Typography
-        variant="h3"
-        sx={{
-          mb: 4,
-        }}
-      >
-        Welcome Mario!
-      </Typography>
-      <h3>
-        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-        ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum
-        integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi
-        lacus sed viverra tellus. Purus sit amet volutpat consequat mauris.
-        Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-        vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra
-        accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac.
-        Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
-        senectus et. Commodo viverra maecenas accumsan lacus vel facilisis.
-        Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-      </h3>
-    </div>
+    <>
+      <Hero />
+      <Container maxWidth="lg" sx={{ mt: -7.5, mb: 4 }}>
+        <Grid container columnSpacing={2}>
+          {/* ---------- LEFT 8/12 ---------- */}
+          <Grid item md={12} lg={8}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-around",
+              }}
+            >
+              <Visitors sx={{ height: 245, width: 350, my: 1.5 }} />
+
+              <Orders sx={{ height: 245, width: 350, my: 1.5 }} />
+
+              <SellYourProducts sx={{ height: 343, width: 350, my: 1.5 }} />
+
+              <Extensions sx={{ height: 343, width: 350, my: 1.5 }} />
+
+              <LatestNews sx={{ width: 729, my: 1.5 }} />
+            </Box>
+          </Grid>
+
+          {/* ---------- RIGHT 3/12 ---------- */}
+          <Grid item md={12} lg={4} ml={{ lg: -1.4 }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-around",
+              }}
+            >
+              <ConfigureShop sx={{ height: 289, width: 350, my: 1.5 }} />
+              <TrustPilot sx={{ height: 232, width: 350, my: 1.5 }} />
+              <Invite sx={{ height: 231, width: 350, my: 1.5 }} />
+              <CustomerSupport sx={{ height: 197, width: 350, my: 1.5 }} />
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </>
   );
 };
 

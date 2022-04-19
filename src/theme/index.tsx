@@ -16,14 +16,20 @@ const theme = createTheme({
     primary: {
       main: "#21B8F9",
       dark: "#103B66",
+      light: "#f7f7f7",
       contrastText: "#fff",
     },
     secondary: {
-      main: "#00C48C",
+      main: "#103B66",
       dark: "#000032",
+      light: "#E9F8FE",
+      contrastText: "#00C48C",
+    },
+    error: {
+      main: "#F33451",
     },
     grey: {
-      200: "#E5E5E5",
+      200: "#f8f9fb",
       500: "#6C7C8C",
       600: "#666666",
       900: "#233B53",
@@ -37,9 +43,15 @@ const theme = createTheme({
     },
     subtitle1: {
       fontFamily: FONT_SECONDARY,
+      fontWeight: 500,
+      fontSize: "1.063rem",
     },
-    // Subtitle1 --> green/ secondary
-    // subtitlt2 ---> 14px 0.875
+    subtitle2: {
+      fontWeight: 400,
+    },
+    overline: {
+      fontSize: 11,
+    },
   },
 });
 

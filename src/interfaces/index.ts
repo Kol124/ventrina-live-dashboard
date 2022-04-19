@@ -17,3 +17,10 @@ export interface PathsType {
     children?: childObject[];
   };
 }
+
+export interface NewsType {
+  title: string;
+  image: string;
+  category: string;
+  url: string;
+}

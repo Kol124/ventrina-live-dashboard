@@ -1,8 +1,5 @@
 import { PathsType } from "../interfaces";
-
-function getPath(root: string, sublink: string): string {
-  return `${root}${sublink}`;
-}
+import { getPath } from "../utils";
 
 const CATALOGUE: string = "/catalogue";
 const MARKETING: string = "/marketing";
@@ -17,15 +14,15 @@ const paths: PathsType = {
     path: "",
     children: [
       {
-        title: "Item 1",
+        title: "Catalogue Item 1",
         path: getPath(CATALOGUE, "/item-1"),
       },
       {
-        title: "Item 2",
+        title: "Catalogue Item 2",
         path: getPath(CATALOGUE, "/item-2"),
       },
       {
-        title: "Item 3",
+        title: "Catalogue Item 3",
         path: getPath(CATALOGUE, "/item-3"),
       },
     ],
@@ -110,7 +107,19 @@ const paths: PathsType = {
   },
   logout: {
     title: "Log out",
-    path: "logout",
+    path: "/logout",
+  },
+  customerSupport: {
+    title: "Customer Support",
+    path: "/customer-support",
+  },
+  share: {
+    title: "Share your shop",
+    path: "/share",
+  },
+  view: {
+    title: "View your shop",
+    path: "/view",
   },
 };
 
