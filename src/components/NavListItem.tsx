@@ -1,6 +1,9 @@
 import * as React from "react";
+import { getActive } from "../utils";
+import { useLocation } from "react-router-dom";
 // @mui
 import List from "@mui/material/List";
+import { useTheme } from "@mui/material/styles";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Typography from "@mui/material/Typography";
@@ -9,8 +12,8 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 // Interface
 import { MenuType } from "../interfaces";
-//
-import RouterLink from "./RouterLink";
+// Components
+import NavListItemButton from "./NavListItemButton";
 
 export default function NavListItem({
   open,
@@ -19,6 +22,10 @@ export default function NavListItem({
   open: boolean;
   item: MenuType;
 }) {
+  const theme = useTheme();
+  const { pathname } = useLocation();
+
+  const isActive = getActive(item.path, pathname);
   const [expand, setExpand] = React.useState(false);
 
   const handleClick = () => {
@@ -27,22 +34,28 @@ export default function NavListItem({
     }
   };
 
+  // DROPDOWN LINKS -----------------------------------------------
   if (item.children) {
     return (
       <>
         <ListItemButton
           sx={{
-            minHeight: 48,
-            justifyContent: open ? "initial" : "center",
             px: 2.5,
+            minHeight: 48,
+            color: theme.palette.primary.dark,
+            justifyContent: open ? "initial" : "center",
           }}
           onClick={handleClick}
         >
           <ListItemIcon
             sx={{
               minWidth: 0,
+              color: "transparent",
               mr: open ? 3 : "auto",
               justifyContent: "center",
+              stroke: isActive
+                ? theme.palette.primary.main
+                : theme.palette.primary.dark,
             }}
           >
             {item.icon}
@@ -66,47 +79,58 @@ export default function NavListItem({
           )}
         </ListItemButton>
         <Collapse in={expand} timeout="auto" unmountOnExit>
-          {item.children?.map((data) => (
-            <List component="div" disablePadding>
-              <RouterLink
-                sx={{
-                  pl: 0,
-                  ml: "auto",
-                  width: "73%",
-                }}
+          <List
+            component="div"
+            sx={{
+              py: theme.spacing(1),
+              backgroundColor: theme.palette.secondary.light,
+            }}
+            disablePadding
+          >
+            {item.children?.map((data) => (
+              <NavListItemButton
+                key={data.path}
                 to={data.path}
+                active={isActive}
               >
                 <Typography
                   sx={{
+                    ml: "auto",
+                    width: "77%",
                     opacity: open ? 1 : 0,
                   }}
                   variant="subtitle2"
                 >
                   {data.title}
                 </Typography>
-              </RouterLink>
-            </List>
-          ))}
+              </NavListItemButton>
+            ))}
+          </List>
         </Collapse>
       </>
     );
   }
 
   return (
-    <RouterLink
+    <NavListItemButton
       key={item.title}
       sx={{
+        px: 2.5,
         minHeight: 48,
         justifyContent: open ? "initial" : "center",
-        px: 2.5,
       }}
       to={item.path}
+      active={isActive}
     >
       <ListItemIcon
         sx={{
           minWidth: 0,
+          color: "transparent",
           mr: open ? 3 : "auto",
           justifyContent: "center",
+          stroke: isActive
+            ? theme.palette.primary.main
+            : theme.palette.primary.dark,
         }}
       >
         {item.icon}
@@ -119,6 +143,6 @@ export default function NavListItem({
       >
         {item.title}
       </Typography>
-    </RouterLink>
+    </NavListItemButton>
   );
 }

@@ -1,18 +1,22 @@
 import * as React from "react";
+import menu from "../routes/menu";
 // @mui
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import { styled as MuiStyled } from "@mui/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { SvgIcon } from "@mui/material";
+import Stack from "@mui/material/Stack";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import Badge from "@mui/material/Badge";
+import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 // Components
 import NavList from "./NavList";
-// Nav Menu
-import menu from "../routes/menu";
+// asset
 import { ReactComponent as Logo } from "../assets/logo.svg";
+import { ReactComponent as ZapIcon } from "../assets/zap.svg";
 
 const drawerWidth = 255;
 
@@ -31,17 +35,16 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  // [theme.breakpoints.up("sm")]: {
-  //   width: `calc(${theme.spacing(8)} + 1px)`,
-  // },
+  width: theme.spacing(6),
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(7)} + 1px)`,
+  },
 });
 
 const DrawerHeader = MuiStyled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(3, 2),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
@@ -55,11 +58,9 @@ const AppBar = styled(MuiAppBar, {
 })<AppBarProps>(({ theme, open }) => ({
   height: 60,
   boxShadow: "none",
-  justifyContent: "center",
-  padding: theme.spacing(0, 6),
   marginLeft: `calc(${theme.spacing(7)} + 1px)`,
   width: `calc(100% - (calc(${theme.spacing(7)} + 1px)))`,
-  border: `1px solid ${theme.palette.grey["200"]}`,
+  borderBottom: `1px solid ${theme.palette.grey["200"]}`,
   backgroundColor: theme.palette.background.default,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -82,6 +83,7 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
+  padding: theme.spacing(4),
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
@@ -94,7 +96,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Sidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerClose = () => {
     setOpen(() => !open);
@@ -103,24 +105,51 @@ export default function Sidebar() {
   return (
     <>
       <AppBar position="fixed" open={open}>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{
-            color: theme.palette.primary.dark,
-          }}
-        >
-          Dashboard
-        </Typography>
+        <Container maxWidth="lg">
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{ height: 60 }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                fontSize: 17,
+                fontWeight: 500,
+                color: theme.palette.primary.dark,
+              }}
+            >
+              Dashboard
+            </Typography>
+
+            <Badge badgeContent={2} color="error">
+              <SvgIcon component={ZapIcon} inheritViewBox />
+              <Typography
+                sx={{
+                  ml: 1,
+                  fontSize: 15,
+                  display: "inline",
+                  color: theme.palette.primary.dark,
+                }}
+              >
+                What's new
+              </Typography>
+            </Badge>
+          </Stack>
+        </Container>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
+        <DrawerHeader
+          style={{
+            justifyContent: open ? "space-between" : "center",
+          }}
+        >
           <SvgIcon
             component={Logo}
             inheritViewBox
             sx={{
-              marginLeft: 2,
+              marginLeft: 1,
               width: 90.4,
               display: open ? "block" : "none",
             }}

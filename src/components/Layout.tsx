@@ -16,8 +16,7 @@ export default function Layout() {
         component="main"
         sx={{
           flexGrow: 1,
-          p: theme.spacing(3, 6),
-          background: theme.palette.background.default,
+          background: theme.palette.grey["200"],
         }}
       >
         <DrawerHeader />
