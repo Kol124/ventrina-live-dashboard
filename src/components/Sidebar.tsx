@@ -74,6 +74,9 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  // [theme.breakpoints.up("sm")]: {
+  //   padding: theme.spacing(0, 6),
+  // },
 }));
 
 const Drawer = styled(MuiDrawer, {
