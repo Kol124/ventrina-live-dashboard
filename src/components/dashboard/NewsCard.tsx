@@ -20,7 +20,7 @@ const NewsCard = ({ title, image, category, url }: NewsType) => {
   const excerpt = title.slice(0, 57).concat(" ...");
 
   return (
-    <Stack direction="row" alignItems="center">
+    <Stack direction="row" alignItems="center" overflow="auto">
       <ButtonBase sx={{ width: 100 }}>
         <Image alt={title} src={image ? image : placeholder} />
       </ButtonBase>

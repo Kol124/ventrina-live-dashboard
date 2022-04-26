@@ -32,7 +32,6 @@ export const LatestNews = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         p: theme.spacing(3),
         bordeRadius: 10,
         boxShadow:

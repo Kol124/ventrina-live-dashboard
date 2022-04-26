@@ -20,14 +20,15 @@ const Dashboard = () => {
     <>
       <Hero />
       <Container maxWidth="lg" sx={{ mt: -7.5, mb: 4 }}>
-        <Grid container columnSpacing={2}>
+        <Grid container>
           {/* ---------- LEFT 8/12 ---------- */}
           <Grid item md={12} lg={8}>
             <Box
               sx={{
+                width: { xs: "auto", lg: "98%" },
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "space-around",
+                justifyContent: { xs: "space-around", md: "space-between" },
               }}
             >
               <Visitors sx={{ height: 245, width: 350, my: 1.5 }} />
@@ -38,17 +39,17 @@ const Dashboard = () => {
 
               <Extensions sx={{ height: 343, width: 350, my: 1.5 }} />
 
-              <LatestNews sx={{ width: 729, my: 1.5 }} />
+              <LatestNews sx={{ width: "100%", my: 1.5 }} />
             </Box>
           </Grid>
 
           {/* ---------- RIGHT 3/12 ---------- */}
-          <Grid item md={12} lg={4} ml={{ lg: -1.4 }}>
+          <Grid item md={12} lg={4}>
             <Box
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "space-around",
+                justifyContent: { xs: "space-around", lg: "flex-end" },
               }}
             >
               <ConfigureShop sx={{ height: 289, width: 350, my: 1.5 }} />

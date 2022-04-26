@@ -18,7 +18,6 @@ export const Invite = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -30,13 +29,7 @@ export const Invite = ({ sx }: Props) => {
       }}
     >
       <Stack direction="row" alignItems="center">
-        <SvgIcon
-          component={UsersIcon}
-          htmlColor="transparent"
-          inheritViewBox
-          color="secondary"
-          sx={{ color: theme.palette.common.white }}
-        />
+        <SvgIcon component={UsersIcon} htmlColor="transparent" />
         <Typography
           variant="h6"
           sx={{
@@ -55,7 +48,7 @@ export const Invite = ({ sx }: Props) => {
           lineHeight: "22px",
           color: theme.palette.primary.dark,
           "& > b": {
-            color: theme.palette.secondary.contrastText,
+            color: theme.palette.secondary.main,
           },
         }}
       >
@@ -77,7 +70,7 @@ export const Invite = ({ sx }: Props) => {
         </Link>
         <ArrowForwardIcon
           sx={{
-            ml: 1,
+            ml: 2,
             width: 20,
             height: 20,
             color: theme.palette.primary.main,

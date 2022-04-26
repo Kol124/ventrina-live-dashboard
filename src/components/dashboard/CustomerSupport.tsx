@@ -20,7 +20,6 @@ export const CustomerSupport = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -49,11 +48,7 @@ export const CustomerSupport = ({ sx }: Props) => {
       </Stack>
 
       <Stack direction="row" alignItems="center">
-        <Avatar
-          alt="avatar"
-          src={avatar}
-          // sx={{ width: 40, height: 40 }}
-        />
+        <Avatar alt="avatar" src={avatar} />
         <Typography
           variant="body2"
           sx={{

@@ -18,7 +18,6 @@ export const ConfigureShop = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -89,14 +88,15 @@ export const ConfigureShop = ({ sx }: Props) => {
             fontSize: 17,
             cursor: "pointer",
             color: theme.palette.primary.main,
+            textDecorationColor: theme.palette.primary.main,
           }}
           underline="always"
         >
-          Complete the settings
+          Complete the setup!
         </Link>
         <ArrowForwardIcon
           sx={{
-            ml: 1,
+            ml: 2,
             width: 20,
             height: 20,
             color: theme.palette.primary.main,

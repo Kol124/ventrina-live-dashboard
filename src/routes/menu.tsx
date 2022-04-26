@@ -3,7 +3,7 @@ import paths from "./paths";
 import SvgIcon from "@mui/material/SvgIcon";
 // assets
 import { ReactComponent as HomeIcon } from "../assets/home.svg";
-import { ReactComponent as CartIcon } from "../assets/cart.svg";
+import { ReactComponent as CatalogueIcon } from "../assets/catalogue.svg";
 import { ReactComponent as ListIcon } from "../assets/list.svg";
 import { ReactComponent as UserIcon } from "../assets/user.svg";
 import { ReactComponent as TruckIcon } from "../assets/truck.svg";
@@ -31,7 +31,13 @@ const menu: MenuType[] = [
     title: paths.catalogue.title,
     path: "",
     children: paths.catalogue.children,
-    icon: <SvgIcon component={CartIcon} inheritViewBox />,
+    icon: (
+      <SvgIcon
+        component={CatalogueIcon}
+        inheritViewBox
+        htmlColor="transparent"
+      />
+    ),
   },
   {
     title: paths.orders.title,

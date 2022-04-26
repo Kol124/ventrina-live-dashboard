@@ -18,7 +18,6 @@ export const TrustPilot = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -32,9 +31,7 @@ export const TrustPilot = ({ sx }: Props) => {
     >
       <SvgIcon
         component={TrustPilotIcon}
-        htmlColor="transparent"
         inheritViewBox
-        color="secondary"
         sx={{
           height: 28,
           width: 117,
@@ -48,7 +45,7 @@ export const TrustPilot = ({ sx }: Props) => {
           lineHeight: "22px",
           color: theme.palette.primary.contrastText,
           "& > span": {
-            color: theme.palette.secondary.contrastText,
+            color: theme.palette.secondary.main,
           },
         }}
       >
@@ -62,18 +59,19 @@ export const TrustPilot = ({ sx }: Props) => {
           sx={{
             fontSize: 17,
             cursor: "pointer",
-            color: theme.palette.secondary.contrastText,
+            color: theme.palette.secondary.main,
+            textDecorationColor: theme.palette.secondary.main,
           }}
           underline="always"
         >
-          Complete the settings
+          Write a review on Trustpilot
         </Link>
         <ArrowForwardIcon
           sx={{
-            ml: 1,
+            ml: 2,
             width: 20,
             height: 20,
-            color: theme.palette.secondary.contrastText,
+            color: theme.palette.secondary.main,
           }}
         />
       </Stack>

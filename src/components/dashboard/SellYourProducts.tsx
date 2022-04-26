@@ -20,7 +20,6 @@ export const SellYourProducts = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -49,10 +48,11 @@ export const SellYourProducts = ({ sx }: Props) => {
             <Link
               variant="subtitle1"
               sx={{
-                mr: 1,
+                mr: 2,
                 fontSize: 17,
                 cursor: "pointer",
                 color: theme.palette.primary.contrastText,
+                textDecorationColor: theme.palette.primary.contrastText,
               }}
               underline="always"
             >

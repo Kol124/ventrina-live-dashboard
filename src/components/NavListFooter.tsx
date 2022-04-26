@@ -7,13 +7,18 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import ListItemIcon from "@mui/material/ListItemIcon";
-// Components
+// components
 import NavListItemButton from "./NavListItemButton";
 import SelectField from "./SelectField";
+// redux
+import { useAppSelector } from "../app/hooks";
+import { selectIsOpen } from "../app/slices/app";
 
-export default function Footer({ open }: { open: boolean }) {
+export default function Footer() {
   const theme = useTheme();
   const { pathname } = useLocation();
+  const isOpen = useAppSelector(selectIsOpen);
+
   const options = [
     { value: "fenoh", label: "Fenoh Store" },
     { value: "chic", label: "Chic Store" },
@@ -30,7 +35,7 @@ export default function Footer({ open }: { open: boolean }) {
             sx={{
               px: 2.5,
               minHeight: 48,
-              justifyContent: open ? "initial" : "center",
+              justifyContent: isOpen ? "initial" : "center",
             }}
             to={item.path}
             active={isActive}
@@ -39,7 +44,7 @@ export default function Footer({ open }: { open: boolean }) {
               sx={{
                 minWidth: 0,
                 color: "transparent",
-                mr: open ? 3 : "auto",
+                mr: isOpen ? 3 : "auto",
                 justifyContent: "center",
                 stroke: isActive
                   ? theme.palette.primary.main
@@ -50,7 +55,7 @@ export default function Footer({ open }: { open: boolean }) {
             </ListItemIcon>
             <Typography
               sx={{
-                opacity: open ? 1 : 0,
+                opacity: isOpen ? 1 : 0,
               }}
               variant="subtitle2"
             >
@@ -63,7 +68,7 @@ export default function Footer({ open }: { open: boolean }) {
         sx={{
           px: theme.spacing(2),
           mt: theme.spacing(3),
-          display: open ? "block" : "none",
+          display: isOpen ? "block" : "none",
         }}
       >
         <Typography

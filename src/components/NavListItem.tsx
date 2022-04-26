@@ -8,30 +8,32 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Typography from "@mui/material/Typography";
 import Collapse from "@mui/material/Collapse";
+import Box from "@mui/material/Box";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 // Interface
 import { MenuType } from "../interfaces";
-// Components
+// components
 import NavListItemButton from "./NavListItemButton";
+// redux
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { setIsOpen, selectIsOpen } from "../app/slices/app";
 
-export default function NavListItem({
-  open,
-  item,
-}: {
-  open: boolean;
-  item: MenuType;
-}) {
+export default function NavListItem({ item }: { item: MenuType }) {
   const theme = useTheme();
   const { pathname } = useLocation();
-
   const isActive = getActive(item.path, pathname);
   const [expand, setExpand] = React.useState(false);
 
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector(selectIsOpen);
+
   const handleClick = () => {
-    if (open) {
+    if (!isOpen) {
+      dispatch(setIsOpen());
       setExpand(!expand);
     }
+    setExpand(!expand);
   };
 
   // DROPDOWN LINKS -----------------------------------------------
@@ -43,15 +45,14 @@ export default function NavListItem({
             px: 2.5,
             minHeight: 48,
             color: theme.palette.primary.dark,
-            justifyContent: open ? "initial" : "center",
+            justifyContent: isOpen ? "initial" : "center",
           }}
           onClick={handleClick}
         >
           <ListItemIcon
             sx={{
               minWidth: 0,
-              color: "transparent",
-              mr: open ? 3 : "auto",
+              mr: isOpen ? 3 : "auto",
               justifyContent: "center",
               stroke: isActive
                 ? theme.palette.primary.main
@@ -62,23 +63,23 @@ export default function NavListItem({
           </ListItemIcon>
           <Typography
             sx={{
-              opacity: open ? 1 : 0,
+              opacity: isOpen ? 1 : 0,
             }}
             variant="subtitle2"
           >
             {item.title}
           </Typography>
-          {expand ? (
+          {expand && isOpen ? (
             <ExpandLess
-              sx={{ marginLeft: "auto", display: open ? "block" : "none" }}
+              sx={{ marginLeft: "auto", display: isOpen ? "block" : "none" }}
             />
           ) : (
             <ExpandMore
-              sx={{ marginLeft: "auto", display: open ? "block" : "none" }}
+              sx={{ marginLeft: "auto", display: isOpen ? "block" : "none" }}
             />
           )}
         </ListItemButton>
-        <Collapse in={expand} timeout="auto" unmountOnExit>
+        <Collapse in={expand && isOpen} timeout="auto" unmountOnExit>
           <List
             component="div"
             sx={{
@@ -97,7 +98,7 @@ export default function NavListItem({
                   sx={{
                     ml: "auto",
                     width: "77%",
-                    opacity: open ? 1 : 0,
+                    opacity: isOpen ? 1 : 0,
                   }}
                   variant="subtitle2"
                 >
@@ -117,7 +118,7 @@ export default function NavListItem({
       sx={{
         px: 2.5,
         minHeight: 48,
-        justifyContent: open ? "initial" : "center",
+        justifyContent: isOpen ? "initial" : "center",
       }}
       to={item.path}
       active={isActive}
@@ -126,7 +127,7 @@ export default function NavListItem({
         sx={{
           minWidth: 0,
           color: "transparent",
-          mr: open ? 3 : "auto",
+          mr: isOpen ? 3 : "auto",
           justifyContent: "center",
           stroke: isActive
             ? theme.palette.primary.main
@@ -137,12 +138,30 @@ export default function NavListItem({
       </ListItemIcon>
       <Typography
         sx={{
-          opacity: open ? 1 : 0,
+          opacity: isOpen ? 1 : 0,
         }}
         variant="subtitle2"
       >
         {item.title}
       </Typography>
+      {item.title === "Orders" && (
+        <Box
+          sx={{
+            width: 24,
+            height: 24,
+            fontSize: 12,
+            color: "white",
+            marginLeft: "auto",
+            borderRadius: "50%",
+            alignItems: "center",
+            justifyContent: "center",
+            display: isOpen ? "flex" : "none",
+            bgcolor: theme.palette.secondary.main,
+          }}
+        >
+          24
+        </Box>
+      )}
     </NavListItemButton>
   );
 }

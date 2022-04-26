@@ -1,6 +1,7 @@
 // @mui
 import { useTheme } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
+import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import SvgIcon from "@mui/material/SvgIcon";
 import Container from "@mui/material/Container";
@@ -15,7 +16,7 @@ const Hero = () => {
     <Box
       sx={{
         height: "182px",
-        color: theme.palette.common.white,
+        color: theme.palette.primary.contrastText,
         background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, rgba(33, 184, 249, 0) 132.05%);`,
       }}
     >
@@ -28,8 +29,8 @@ const Hero = () => {
           <Typography
             variant="h3"
             sx={{
-              [theme.breakpoints.down("md")]: {
-                fontSize: 22,
+              [theme.breakpoints.down("sm")]: {
+                fontSize: 32,
               },
             }}
           >
@@ -41,15 +42,25 @@ const Hero = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h6" sx={{ fontSize: 17, mr: 1 }}>
+            <Link
+              variant="h6"
+              sx={{
+                mr: 1,
+                fontSize: 17,
+                cursor: "pointer",
+                textDecorationThickness: 3,
+                color: theme.palette.primary.contrastText,
+              }}
+              underline="always"
+            >
               app.vetrinalive.it/fenoh-store
-            </Typography>
+            </Link>
             <SvgIcon
               component={ExternalLinkIcon}
               inheritViewBox
               htmlColor="transparent"
               sx={{
-                stroke: theme.palette.common.white,
+                stroke: theme.palette.primary.contrastText,
               }}
             />
           </Stack>

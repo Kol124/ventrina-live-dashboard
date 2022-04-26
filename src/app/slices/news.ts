@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ParseNewsData } from "../../utils";
 import { fetchData } from "../../api/index";
 import { NewsType } from "../../interfaces";
-import { setIsLoading } from "./app";
 import { RootState } from "../store";
 
 interface NewsState {
@@ -15,15 +14,11 @@ const initialState: NewsState = {
 
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async (_, { dispatch, rejectWithValue }) => {
-    dispatch(setIsLoading(true));
-
+  async (_, { rejectWithValue }) => {
     try {
       const res = await fetchData();
-      dispatch(setIsLoading(false));
       return res;
     } catch (err) {
-      dispatch(setIsLoading(false));
       return rejectWithValue(err);
     }
   }

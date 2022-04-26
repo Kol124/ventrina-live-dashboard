@@ -4,7 +4,6 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import SvgIcon from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 // components
 import SelectField from "../SelectField";
 // assets
@@ -24,7 +23,6 @@ export const Orders = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -45,7 +43,7 @@ export const Orders = ({ sx }: Props) => {
             component={ListIcon}
             htmlColor="transparent"
             inheritViewBox
-            color="secondary"
+            sx={{ color: theme.palette.primary.dark }}
           />
           <Typography
             variant="h6"
@@ -137,19 +135,12 @@ export const Orders = ({ sx }: Props) => {
             fontSize: 17,
             cursor: "pointer",
             color: theme.palette.primary.main,
+            textDecorationColor: theme.palette.primary.main,
           }}
           underline="always"
         >
           10 free tips to increase your sales
         </Link>
-        <ArrowForwardIcon
-          sx={{
-            ml: 1,
-            width: 20,
-            height: 20,
-            color: theme.palette.primary.main,
-          }}
-        />
       </Stack>
     </Paper>
   );

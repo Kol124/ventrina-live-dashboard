@@ -1,4 +1,3 @@
-import * as React from "react";
 import menu from "../routes/menu";
 // @mui
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
@@ -6,17 +5,20 @@ import { styled as MuiStyled } from "@mui/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { SvgIcon } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiBox, { BoxProps as MuiBoxProps } from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-// Components
+// components
 import NavList from "./NavList";
 // asset
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { ReactComponent as ZapIcon } from "../assets/zap.svg";
+// redux
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { setIsOpen, selectIsOpen } from "../app/slices/app";
 
 const drawerWidth = 255;
 
@@ -35,10 +37,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: theme.spacing(6),
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(7)} + 1px)`,
-  },
+  width: `calc(${theme.spacing(8)} + 1px)`,
 });
 
 const DrawerHeader = MuiStyled("div")(({ theme }) => ({
@@ -49,34 +48,30 @@ const DrawerHeader = MuiStyled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface AppBarProps extends MuiAppBarProps {
+interface BoxProps extends MuiBoxProps {
   open?: boolean;
 }
 
-const AppBar = styled(MuiAppBar, {
+const Navbar = styled(MuiBox, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<BoxProps>(({ theme, open }) => ({
   height: 60,
   boxShadow: "none",
-  marginLeft: `calc(${theme.spacing(7)} + 1px)`,
-  width: `calc(100% - (calc(${theme.spacing(7)} + 1px)))`,
-  borderBottom: `1px solid ${theme.palette.grey["200"]}`,
+  marginLeft: theme.spacing(8),
+  zIndex: theme.zIndex.drawer + 1,
   backgroundColor: theme.palette.background.default,
+  width: `calc(100% - (calc(${theme.spacing(8)} + 4px)))`,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-  // [theme.breakpoints.up("sm")]: {
-  //   padding: theme.spacing(0, 6),
-  // },
 }));
 
 const Drawer = styled(MuiDrawer, {
@@ -99,15 +94,12 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Sidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerClose = () => {
-    setOpen(() => !open);
-  };
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector(selectIsOpen);
 
   return (
     <>
-      <AppBar position="fixed" open={open}>
+      <Navbar position="fixed" open={isOpen}>
         <Container maxWidth="lg">
           <Stack
             direction="row"
@@ -141,11 +133,11 @@ export default function Sidebar() {
             </Badge>
           </Stack>
         </Container>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
+      </Navbar>
+      <Drawer variant="permanent" open={isOpen}>
         <DrawerHeader
           style={{
-            justifyContent: open ? "space-between" : "center",
+            justifyContent: isOpen ? "space-between" : "center",
           }}
         >
           <SvgIcon
@@ -154,14 +146,14 @@ export default function Sidebar() {
             sx={{
               marginLeft: 1,
               width: 90.4,
-              display: open ? "block" : "none",
+              display: isOpen ? "block" : "none",
             }}
           />
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={() => dispatch(setIsOpen())}>
             <MenuIcon />
           </IconButton>
         </DrawerHeader>
-        <NavList open={open} menu={menu} />
+        <NavList menu={menu} />
       </Drawer>
     </>
   );

@@ -19,7 +19,6 @@ export const Extensions = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -34,9 +33,11 @@ export const Extensions = ({ sx }: Props) => {
       <Stack direction="row" alignItems="center">
         <SvgIcon
           component={ExtensionsIcon}
-          htmlColor="transparent"
           inheritViewBox
-          color="secondary"
+          sx={{
+            color: "transparent",
+            stroke: theme.palette.primary.dark,
+          }}
         />
         <Typography
           variant="h6"
@@ -131,10 +132,10 @@ export const Extensions = ({ sx }: Props) => {
         <Link
           variant="subtitle1"
           sx={{
-            mr: 1,
             fontSize: 17,
             cursor: "pointer",
             color: theme.palette.primary.main,
+            textDecorationColor: theme.palette.primary.main,
           }}
           underline="always"
         >
@@ -142,7 +143,7 @@ export const Extensions = ({ sx }: Props) => {
         </Link>
         <ArrowForwardIcon
           sx={{
-            ml: 1,
+            ml: 2,
             width: 20,
             height: 20,
             color: theme.palette.primary.main,

@@ -24,7 +24,6 @@ export const Visitors = ({ sx }: Props) => {
   return (
     <Paper
       sx={{
-        m: 1,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -88,13 +87,14 @@ export const Visitors = ({ sx }: Props) => {
         1824
       </Typography>
 
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
+      <Stack direction="row" alignItems="center">
         <Link
           variant="subtitle1"
           sx={{
             fontSize: 17,
             cursor: "pointer",
             color: theme.palette.primary.main,
+            textDecorationColor: theme.palette.primary.main,
           }}
           underline="always"
         >
@@ -102,7 +102,7 @@ export const Visitors = ({ sx }: Props) => {
         </Link>
         <ArrowForwardIcon
           sx={{
-            ml: 1,
+            ml: 2,
             width: 20,
             height: 20,
             color: theme.palette.primary.main,
