@@ -1,12 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-<<<<<<< HEAD
 import { LatestNews } from "../components/dashboard";
 import { render, screen, waitForElement } from "../test-utils";
-=======
-import { render, screen, waitForElement } from "../test-utils";
-import { LatestNews } from "../components/dashboard";
->>>>>>> 42ce79cc3a4978cf9306b5d7c41333e8ff3b2c3a
 
 export const handlers = [
   rest.get("/api/latest-news", (req, res, ctx) => {
