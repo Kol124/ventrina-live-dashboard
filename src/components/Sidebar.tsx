@@ -63,15 +63,23 @@ const Navbar = styled(MuiBox, {
   width: `calc(100% - (calc(${theme.spacing(8)} + 4px)))`,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
+    duration: theme.transitions.duration.enteringScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  // Push Navbar
+  [theme.breakpoints.down("sm")]: {
+    ...(open && {
+      marginLeft: drawerWidth,
+      width: `calc(100% - (calc(${theme.spacing(8)} + 4px)))`,
+    }),
+  },
 }));
 
 const Drawer = styled(MuiDrawer, {

@@ -20,16 +20,18 @@ export default function Layout() {
         component="main"
         sx={{
           flexGrow: 1,
-          height: "100%",
-          overflow: "auto",
-          position: "fixed",
           background: theme.palette.grey["200"],
-          width: `calc(100% - (calc(${theme.spacing(8)} + 1px)))`,
-          marginLeft: isOpen ? 255 : `calc(${theme.spacing(8)} + 1px)`,
-          transition: theme.transitions.create("margin", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
+          [theme.breakpoints.down("sm")]: {
+            height: "100%",
+            overflow: "auto",
+            position: "fixed",
+            width: `calc(100% - (calc(${theme.spacing(8)} + 1px)))`,
+            ml: isOpen ? "255px" : `calc(${theme.spacing(8)} + 1px)`,
+            transition: theme.transitions.create("margin", {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
+          },
         }}
       >
         <DrawerHeader />

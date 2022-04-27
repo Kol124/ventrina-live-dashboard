@@ -17,10 +17,15 @@ const Image = styled("img")({
 
 const NewsCard = ({ title, image, category, url }: NewsType) => {
   const theme = useTheme();
-  const excerpt = title.slice(0, 57).concat(" ...");
+  const excerpt = title.slice(0, 77).concat(" ...");
 
   return (
-    <Stack direction="row" alignItems="center" overflow="auto">
+    <Stack
+      direction="row"
+      alignItems="center"
+      overflow="auto"
+      data-testid="news-card"
+    >
       <ButtonBase sx={{ width: 100 }}>
         <Image alt={title} src={image ? image : placeholder} />
       </ButtonBase>
@@ -32,6 +37,7 @@ const NewsCard = ({ title, image, category, url }: NewsType) => {
           </Typography>
 
           <Typography
+            data-testid="news-title"
             variant="body2"
             sx={{
               fontWeight: 500,
@@ -43,6 +49,7 @@ const NewsCard = ({ title, image, category, url }: NewsType) => {
           </Typography>
 
           <Link
+            data-testid="news-link"
             variant="caption"
             target="_blank"
             href={url}

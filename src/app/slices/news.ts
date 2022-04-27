@@ -4,7 +4,7 @@ import { fetchData } from "../../api/index";
 import { NewsType } from "../../interfaces";
 import { RootState } from "../store";
 
-interface NewsState {
+export interface NewsState {
   newsData: NewsType[];
 }
 
