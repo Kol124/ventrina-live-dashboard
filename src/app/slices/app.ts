@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-interface AppState {
+export interface AppState {
   isOpen: boolean;
 }
 

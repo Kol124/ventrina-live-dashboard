@@ -2,6 +2,7 @@ export * from "./ConfigureShop";
 export * from "./Extensions";
 export * from "./LatestNews";
 export * from "./Orders";
+export * from "./Hero";
 export * from "./Invite";
 export * from "./Visitors";
 export * from "./TrustPilot";

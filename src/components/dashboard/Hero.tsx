@@ -7,9 +7,9 @@ import SvgIcon from "@mui/material/SvgIcon";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 // assets
-import { ReactComponent as ExternalLinkIcon } from "../assets/external-link.svg";
+import { ReactComponent as ExternalLinkIcon } from "../../assets/external-link.svg";
 
-const Hero = () => {
+export const Hero = () => {
   const theme = useTheme();
 
   return (
@@ -69,5 +69,3 @@ const Hero = () => {
     </Box>
   );
 };
-
-export default Hero;
