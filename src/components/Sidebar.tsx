@@ -57,10 +57,10 @@ const Navbar = styled(MuiBox, {
 })<BoxProps>(({ theme, open }) => ({
   height: 60,
   boxShadow: "none",
-  marginLeft: theme.spacing(8),
+  marginLeft: `calc(${theme.spacing(8)} + 1px)`,
   zIndex: theme.zIndex.drawer + 1,
   backgroundColor: theme.palette.background.default,
-  width: `calc(100% - (calc(${theme.spacing(8)} + 4px)))`,
+  width: `calc(100% - (calc(${theme.spacing(8)} + 1px)))`,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -77,7 +77,7 @@ const Navbar = styled(MuiBox, {
   [theme.breakpoints.down("sm")]: {
     ...(open && {
       marginLeft: drawerWidth,
-      width: `calc(100% - (calc(${theme.spacing(8)} + 4px)))`,
+      width: `calc(100% - (calc(${theme.spacing(8)} + 1px)))`,
     }),
   },
 }));
